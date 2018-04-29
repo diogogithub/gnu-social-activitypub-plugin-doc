@@ -36,7 +36,7 @@ ___
 
 #### Getting an Actor's Liked Collection:
 
-    GET :username/liked.json
+    GET :nickname/liked.json
 
 Query parameters:
 
@@ -58,7 +58,7 @@ Return:
 
 #### Fetching an Actor's profile:
 
-    GET :username/profile.json
+    GET :nickname/profile.json
 
 Returns a [Profile](#profile).
 
@@ -128,9 +128,9 @@ The most important part of an error response is the HTTP status code. Standard s
 | Attribute                | Description                                                                        | Nullable |
 | ------------------------ | ---------------------------------------------------------------------------------- | -------- |
 | `@context`               | Standard compliance                                                                | no       |
-| `id`                     | The ID of the Actor                                                                | no       |
+| `id`                     | Actor's id                                                                         | no       |
 | `type`                   | Person                                                                             | no       |
-| `nickname`               | The username of the account                                                        | no       |
+| `nickname`               | Actor's nickname                                                                   | no       |
 | `inbox`                  | URL to Actor's inbox endpoint                                                      | no       |
 | `outbox`                 | URL to Actor's outbox endpoint                                                     | no       |
 | `acct`                   | Equals `username` for local users, includes `@domain` for remote ones              | no       |
