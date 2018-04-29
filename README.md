@@ -39,6 +39,7 @@ Query parameters:
 
 Returns a [Profile](#profile).
 
+### Liked Collection
 
 #### Getting an Actor's Liked Collection:
 
@@ -52,7 +53,14 @@ Query parameters:
 | `since`    | Starts from nth entry                                          | yes        |
 | `limit`    | Maximum number of followers to get (Default 40, Max 80)        | yes        |
 
-Returns an array of [Notices](#notice).
+Return:
+
+| Field           | Description                                                    |
+| --------------- | -------------------------------------------------------------- |
+| `id`            | URL for current endpoint                                       |
+| `type`          | OrderedCollection                                              |
+| `totalItems`    | Number of elements in orderedItems                             |
+| `orderedItems`  | An array of [Notices](#notice).                                |
 
 
 ## Entities
@@ -74,6 +82,7 @@ Returns an array of [Notices](#notice).
 | `followers`              | URL to Actor's followers endpoint                                                  | no       |
 | `followers`              | URL to Actor's following endpoint                                                  | no       |
 | `liked`                  | URL to Actor's Liked collection endpoint                                           | no       |
+| `liked_count`            | Total number of faves                                                              | no       |
 | `summary`                | Actor's biography                                                                  | no       |
 | `url`                    | URL of the Actor's profile page (can be remote)                                    | no       |
 | `avatar`                 | [Image](#image) object with the Actor's avatar                                     | no       |
