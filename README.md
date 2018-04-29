@@ -82,20 +82,20 @@ Returns an array of [Notices](#notice).
 
 | Attribute                | Description                                  | Nullable |
 | ------------------------ | -------------------------------------------- | -------- |
-| `id`                     | Notice's id                                  | no       |
-| `actor_id`               | Notice owner's id                            | no       |
-| `uri`                    | Notice's URI                                 | no       |
+| `id`                     | Notice's URL                                 | no       |
+| `type`                   | Notice's Type                                | no       |
+| `actor`                  | Notice owner's URL                           | no       |
+| `published`              | DateTime of notice creation                  | no       |
+| `to`                     | To                                           | no       |
+| `cc`                     | CC                                           | no       |
 | `content`                | Notice's Content in plain text               | no       |
 | `rendered`               | Notice's Content in HTML                     | no       |
 | `url`                    | Notice's URL                                 | no       |
-| `created`                | DateTime of notice creation                  | no       |
 | `reply_to`               | ID of the notice this replies                | yes      |
 | `is_local`               | Equals 1 for local notices, 0 otherwise      | no       |
-| `source`                 | Not sure of what it is                       | no       |
-| `conversation`           | Homepage URL of the app                      | no       |
-| `repeat_of`              | Not sure of what it is                       | yes      |
-| `verb`                   | Standard compliance                          | no       |
-| `object_type`            | Standard compliance                          | no       |
+| `conversation`           | Notice conversation id                       | no       |
+| `attachment`             | Attachment object                            | no       |
+| `tag`                    | Tag array                                    | no       |
 
 ### Image
 
