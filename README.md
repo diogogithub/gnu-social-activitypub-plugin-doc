@@ -106,22 +106,22 @@ The most important part of an error response is the HTTP status code. Standard s
 
 ### Notice
 
-| Attribute                | Description                                  | Nullable |
-| ------------------------ | -------------------------------------------- | -------- |
-| `id`                     | Notice's URL                                 | no       |
-| `type`                   | Notice's Type                                | no       |
-| `actor`                  | Notice owner's URL                           | no       |
-| `published`              | DateTime of notice creation                  | no       |
-| `to`                     | To                                           | no       |
-| `cc`                     | CC                                           | no       |
-| `content`                | Notice's Content in plain text               | no       |
-| `rendered`               | Notice's Content in HTML                     | no       |
-| `url`                    | Notice's URL                                 | no       |
-| `reply_to`               | ID of the notice this replies                | yes      |
-| `is_local`               | Equals 1 for local notices, 0 otherwise      | no       |
-| `conversation`           | Notice conversation id                       | no       |
-| `attachment`             | Attachment object                            | no       |
-| `tag`                    | Tag array                                    | no       |
+| Attribute                | Description                                       | Nullable |
+| ------------------------ | ------------------------------------------------- | -------- |
+| `id`                     | Notice's URL                                      | no       |
+| `type`                   | Notice's Type                                     | no       |
+| `actor`                  | URL of Notice owner profile page (can be remote)  | no       |
+| `published`              | DateTime of notice creation                       | no       |
+| `to`                     | To                                                | no       |
+| `cc`                     | CC                                                | no       |
+| `content`                | Notice's Content in plain text                    | no       |
+| `rendered`               | Notice's Content in HTML                          | no       |
+| `url`                    | Notice's URL                                      | no       |
+| `reply_to`               | ID of the notice this replies                     | yes      |
+| `is_local`               | Equals 1 for local notices, 0 otherwise           | no       |
+| `conversation`           | Notice conversation id                            | no       |
+| `attachment`             | Attachment object                                 | no       |
+| `tag`                    | Tag array                                         | no       |
 
 ### Profile
 
@@ -133,12 +133,12 @@ The most important part of an error response is the HTTP status code. Standard s
 | `nickname`               | Actor's nickname                                                                   | no       |
 | `inbox`                  | URL to Actor's inbox endpoint                                                      | no       |
 | `outbox`                 | URL to Actor's outbox endpoint                                                     | no       |
-| `acct`                   | Equals `username` for local users, includes `@domain` for remote ones              | no       |
+| `acct`                   | Equals `nickname` for local users, includes `@domain` for remote ones              | no       |
 | `display_name`           | The Actor's display name                                                           | no       |
 | `followers`              | URL to Actor's followers endpoint                                                  | no       |
 | `followers`              | URL to Actor's following endpoint                                                  | no       |
 | `liked`                  | URL to Actor's Liked collection endpoint                                           | no       |
-| `liked_count`            | Total number of faves                                                              | no       |
+| `liked_count`            | Total number of favorites                                                          | no       |
 | `summary`                | Actor's biography                                                                  | no       |
 | `url`                    | URL of the Actor's profile page (can be remote)                                    | no       |
 | `avatar`                 | [Image](#image) object with the Actor's avatar                                     | no       |
