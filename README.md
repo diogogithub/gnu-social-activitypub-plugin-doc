@@ -73,19 +73,14 @@ ___
 | Attribute                | Description                                                                       | Nullable |
 | ------------------------ | --------------------------------------------------------------------------------- | -------- |
 | `id`                     | ID of the attachment                                                              | no       |
-| `type`                   | One of: "image", "video", "gifv", "unknown"                                       | no       |
+| `mimetype`               | Mimetype                                                                          | no       |
 | `url`                    | URL of the locally hosted version of the image                                    | no       |
-| `remote_url`             | For remote images, the remote URL of the original image                           | yes      |
-| `preview_url`            | URL of the preview image                                                          | no       |
-| `text_url`               | Shorter URL for the image, for insertion into text (only present on local images) | yes      |
 | `meta`                   | See **attachment metadata** below                                                 | yes      |
-| `description`            | A description of the image for the visually impaired (maximum 420 characters), or `null` if none provided  | yes      |
+| `title`                  | Attachment title                                                                  | no       |
 
 **Attachment metadata:**
 
-May contain `small` and `original` (referring to the preview and the original file). Images may contain `width`, `height`, `size`, `aspect`, while videos (including GIFV) may contain `width`, `height`, `frame_rate`, `duration` and `bitrate`. There may be another top-level object, `focus` with the coordinates `x` and `y`. These coordinates can be used for smart thumbnail cropping, [see this for reference](https://github.com/jonom/jquery-focuspoint#1-calculate-your-images-focus-point).
-
-> **Note**: When the type is "unknown", it is likely only `remote_url` is available and local `url` is missing
+Images may contain `width`, `height`, `size`.
 
 ### Error
 
@@ -118,7 +113,7 @@ The most important part of an error response is the HTTP status code. Standard s
 | `rendered`               | Notice's Content in HTML                          | no       |
 | `url`                    | Notice's URL                                      | no       |
 | `reply_to`               | ID of the notice this replies                     | yes      |
-| `is_local`               | Equals 1 for local notices, 0 otherwise           | no       |
+| `is_local`               | Boolean, true if local, false otherwise           | no       |
 | `conversation`           | Notice conversation id                            | no       |
 | `attachment`             | Attachment object                                 | no       |
 | `tag`                    | Tag array                                         | no       |
@@ -131,12 +126,12 @@ The most important part of an error response is the HTTP status code. Standard s
 | `id`                     | Actor's id                                                                         | no       |
 | `type`                   | Person                                                                             | no       |
 | `nickname`               | Actor's nickname                                                                   | no       |
+| `is_local`               | Boolean, true if local, false otherwise                                            | no       |
 | `inbox`                  | URL to Actor's inbox endpoint                                                      | no       |
 | `outbox`                 | URL to Actor's outbox endpoint                                                     | no       |
-| `acct`                   | Equals `nickname` for local users, includes `@domain` for remote ones              | no       |
 | `display_name`           | The Actor's display name                                                           | no       |
 | `followers`              | URL to Actor's followers endpoint                                                  | no       |
-| `followers`              | URL to Actor's following endpoint                                                  | no       |
+| `following`              | URL to Actor's following endpoint                                                  | no       |
 | `liked`                  | URL to Actor's Liked collection endpoint                                           | no       |
 | `liked_count`            | Total number of favorites                                                          | no       |
 | `summary`                | Actor's biography                                                                  | no       |
