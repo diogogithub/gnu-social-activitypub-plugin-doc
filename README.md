@@ -40,20 +40,20 @@ ___
 
 Query parameters:
 
-| Field       | Description                                                    | Optional   |
-| ----------- | -------------------------------------------------------------- | ---------- |
-| `max_id`    | Get a list of likes with ID less than this value               | yes        |
-| `since_id`  | Get a list of likes with ID greater than this value            | yes        |
-| `limit`     | Maximum number of likes to get (Default 40, Max 80)            | yes        |
+| Field       | Description                                          | Optional   | Type       |
+| ----------- | ---------------------------------------------------- | ---------- | ---------- |
+| `max_id`    | Get a list of likes with ID less than this value     | yes        | int32      |
+| `since_id`  | Get a list of likes with ID greater than this value  | yes        | int32      |
+| `limit`     | Maximum number of likes to get (Default 40, Max 80)  | yes        | int32      |
 
 Return:
 
-| Field           | Description                                                    |
-| --------------- | -------------------------------------------------------------- |
-| `id`            | URL for current endpoint                                       |
-| `type`          | OrderedCollection                                              |
-| `totalItems`    | Number of elements in orderedItems                             |
-| `orderedItems`  | An array of [Notices](#notice).                                |
+| Field           | Description                         | Type                         |
+| --------------- | ----------------------------------- | ---------------------------- |
+| `id`            | URL for current endpoint            | int32                        |
+| `type`          | OrderedCollection                   | int32                        |
+| `totalItems`    | Number of elements in orderedItems  | int32                        |
+| `orderedItems`  | Array of [Notices](#notice)         | Array of [Notices](#notice)  |
 
 ### Profiles
 
@@ -71,13 +71,13 @@ ___
 
 ### Attachment
 
-| Attribute                | Description                                                                       | Nullable |
-| ------------------------ | --------------------------------------------------------------------------------- | -------- |
-| `id`                     | ID of the attachment                                                              | no       |
-| `mimetype`               | Mimetype                                                                          | no       |
-| `url`                    | URL of the locally hosted version of the image                                    | no       |
-| `meta`                   | See **attachment metadata** below                                                 | yes      |
-| `title`                  | Attachment title                                                                  | no       |
+| Attribute                | Description                                     | Nullable | Type    |
+| ------------------------ | ----------------------------------------------- | -------- | ------- |
+| `id`                     | ID of the attachment                            | no       | int32   |
+| `mimetype`               | Mimetype                                        | no       | string  |
+| `url`                    | URL of the locally hosted version of the image  | no       | string  |
+| `meta`                   | See **attachment metadata** below               | yes      | Array   |
+| `title`                  | Attachment title                                | no       | string  |
 
 **Attachment metadata:**
 
@@ -87,61 +87,61 @@ Images may contain `width`, `height`, `size`.
 
 The most important part of an error response is the HTTP status code. Standard semantics are followed. The body of an error is a JSON object with this structure:
 
-| Attribute                | Description                        | Nullable |
-| ------------------------ | ---------------------------------- | -------- |
-| `error`                  | A textual description of the error | no       |
+| Attribute                | Description                        | Nullable | Type    |
+| ------------------------ | ---------------------------------- | -------- | ------- |
+| `error`                  | A textual description of the error | no       | string  |
 
 ### Image
 
-| Attribute                | Description             | Nullable |
-| ------------------------ | ----------------------- | -------- |
-| `type`                   | Image                   | no       |
-| `width`                  | Image's width           | no       |
-| `height`                 | Image's height          | no       |
-| `url`                    | Image URL               | no       |
+| Attribute                | Description     | Nullable | Type    |
+| ------------------------ | --------------- | -------- | ------- |
+| `type`                   | "Image"         | no       | string  |
+| `width`                  | Image's width   | no       | int32   |
+| `height`                 | Image's height  | no       | int32   |
+| `url`                    | Image URL       | no       | string  |
 
 ### Notice
 
-| Attribute                | Description                                       | Nullable |
-| ------------------------ | ------------------------------------------------- | -------- |
-| `id`                     | Notice's URL                                      | no       |
-| `type`                   | Notice's Type                                     | no       |
-| `actor`                  | URL of Notice owner profile page (can be remote)  | no       |
-| `published`              | DateTime of notice creation                       | no       |
-| `to`                     | To                                                | no       |
-| `cc`                     | CC                                                | no       |
-| `content`                | Notice's Content in plain text                    | no       |
-| `rendered`               | Notice's Content in HTML                          | no       |
-| `url`                    | Notice's URL                                      | no       |
-| `reply_to`               | ID of the notice this replies                     | yes      |
-| `is_local`               | Boolean, true if local, false otherwise           | no       |
-| `conversation`           | Notice conversation id                            | no       |
-| `attachment`             | Attachment object                                 | no       |
-| `tag`                    | Tag array                                         | no       |
+| Attribute                | Description                                       | Nullable | Type                                 |
+| ------------------------ | ------------------------------------------------- | -------- | ------------------------------------ |
+| `id`                     | Notice's URL                                      | no       | string                               |
+| `type`                   | Notice's Type                                     | no       | string                               |
+| `actor`                  | URL of Notice owner profile page (can be remote)  | no       | string                               |
+| `published`              | DateTime of notice creation                       | no       | datetime                             |
+| `to`                     | To                                                | no       |                                      |
+| `cc`                     | CC                                                | no       |                                      |
+| `content`                | Notice's Content in plain text                    | no       | string                               |
+| `rendered`               | Notice's Content in HTML                          | no       | string                               |
+| `url`                    | Notice's URL                                      | no       | string                               |
+| `reply_to`               | ID of the notice this replies                     | yes      | int32                                |
+| `is_local`               | Boolean, true if local, false otherwise           | no       | bool                                 |
+| `conversation`           | Notice conversation id                            | no       | int32                                |
+| `attachment`             | Array of [Attachments](#attachment)               | no       | Array of [Attachments](#attachment)  |
+| `tag`                    | Array of [Tags](#tag)                             | no       | Array of [Tags](#tag)                |
 
 ### Profile
 
-| Attribute                | Description                                                                        | Nullable |
-| ------------------------ | ---------------------------------------------------------------------------------- | -------- |
-| `@context`               | Standard compliance                                                                | no       |
-| `id`                     | Actor's id                                                                         | no       |
-| `type`                   | Person                                                                             | no       |
-| `nickname`               | Actor's nickname                                                                   | no       |
-| `is_local`               | Boolean, true if local, false otherwise                                            | no       |
-| `inbox`                  | URL to Actor's inbox endpoint                                                      | no       |
-| `outbox`                 | URL to Actor's outbox endpoint                                                     | no       |
-| `display_name`           | The Actor's display name                                                           | no       |
-| `followers`              | URL to Actor's followers endpoint                                                  | no       |
-| `following`              | URL to Actor's following endpoint                                                  | no       |
-| `liked`                  | URL to Actor's Liked collection endpoint                                           | no       |
-| `liked_count`            | Total number of favorites                                                          | no       |
-| `summary`                | Actor's biography                                                                  | no       |
-| `url`                    | URL of the Actor's profile page (can be remote)                                    | no       |
-| `avatar`                 | [Image](#image) object with the Actor's avatar                                     | no       |
+| Attribute                | Description                                      | Nullable | Type             |
+| ------------------------ | ------------------------------------------------ | -------- | ---------------- |
+| `@context`               | Standard compliance                              | no       |                  |
+| `id`                     | Actor's id                                       | no       | int32            |
+| `type`                   | "Person"                                         | no       | string           |
+| `nickname`               | Actor's nickname                                 | no       | string           |
+| `is_local`               | True if local, false otherwise                   | no       | bool             |
+| `inbox`                  | URL to Actor's inbox endpoint                    | no       | string           |
+| `outbox`                 | URL to Actor's outbox endpoint                   | no       | string           |
+| `display_name`           | The Actor's display name                         | no       | string           |
+| `followers`              | URL to Actor's followers endpoint                | no       | string           |
+| `following`              | URL to Actor's following endpoint                | no       | string           |
+| `liked`                  | URL to Actor's Liked collection endpoint         | no       | string           |
+| `liked_count`            | Total number of favorites                        | no       | int32            |
+| `summary`                | Actor's biography                                | no       | string           |
+| `url`                    | URL of the Actor's profile page (can be remote)  | no       | string           |
+| `avatar`                 | Actor's avatar                                   | no       | [Image](#image)  |
 
 ### Tag
 
-| Attribute                | Description                                  | Nullable |
-| ------------------------ | -------------------------------------------- | -------- |
-| `name`                   | The hashtag, not including the preceding `#` | no       |
-| `url`                    | The URL of the hashtag                       | no       |
+| Attribute                | Description                                  | Nullable | Type       |
+| ------------------------ | -------------------------------------------- | -------- | ---------- |
+| `name`                   | The hashtag, not including the preceding `#` | no       | string     |
+| `url`                    | The URL of the hashtag                       | no       | string     |
