@@ -40,10 +40,11 @@ ___
 
 Query parameters:
 
-| Field      | Description                                                    | Optional   |
-| ---------- | -------------------------------------------------------------- | ---------- |
-| `since`    | Starts from nth entry                                          | yes        |
-| `limit`    | Maximum number of followers to get (Default 40, Max 80)        | yes        |
+| Field       | Description                                                    | Optional   |
+| ----------- | -------------------------------------------------------------- | ---------- |
+| `max_id`    | Get a list of likes with ID less than this value               | yes        |
+| `since_id`  | Get a list of likes with ID greater than this value            | yes        |
+| `limit`     | Maximum number of likes to get (Default 40, Max 80)            | yes        |
 
 Return:
 
