@@ -4,6 +4,7 @@ ActivityPub Plugin for GNU Social Doc
 ## Contents
 
 - [Methods](#methods)
+  - [Followers Collection](#followers-collection)
   - [Liked Collection](#liked-collection)
   - [Profiles](#profiles)
 - [Entities](#entities)
@@ -32,6 +33,27 @@ ___
 
 ## Methods
 
+### Followers Collection
+
+#### Getting an Actor's Followers Collection:
+
+    GET :nickname/followers.json
+
+Query parameters:
+
+| Field       | Description                                          | Optional   | Type       |
+| ----------- | ---------------------------------------------------- | ---------- | ---------- |
+| `page`      | Followers page index                                 | no         | int32      |
+
+Return:
+
+| Field           | Description                         | Type    |
+| --------------- | ----------------------------------- | ------- |
+| `id`            | URL for current endpoint            | string  |
+| `type`          | OrderedCollectionPage               | string  |
+| `totalItems`    | Total number of followers           | int32   |
+| `orderedItems`  | The URL of each follower            | string  |
+
 ### Liked Collection
 
 #### Getting an Actor's Liked Collection:
@@ -50,8 +72,8 @@ Return:
 
 | Field           | Description                         | Type                         |
 | --------------- | ----------------------------------- | ---------------------------- |
-| `id`            | URL for current endpoint            | int32                        |
-| `type`          | OrderedCollection                   | int32                        |
+| `id`            | URL for current endpoint            | string                       |
+| `type`          | OrderedCollection                   | string                       |
 | `totalItems`    | Number of elements in orderedItems  | int32                        |
 | `orderedItems`  | Array of [Notices](#notice)         | Array of [Notices](#notice)  |
 
@@ -132,7 +154,9 @@ The most important part of an error response is the HTTP status code. Standard s
 | `outbox`                 | URL to Actor's outbox endpoint                   | no       | string           |
 | `display_name`           | The Actor's display name                         | no       | string           |
 | `followers`              | URL to Actor's followers endpoint                | no       | string           |
+| `followers_count`        | Total number of followers                        | no       | int32            |
 | `following`              | URL to Actor's following endpoint                | no       | string           |
+| `following_count`        | Total number of following                        | no       | int32            |
 | `liked`                  | URL to Actor's Liked collection endpoint         | no       | string           |
 | `liked_count`            | Total number of favorites                        | no       | int32            |
 | `summary`                | Actor's biography                                | no       | string           |
