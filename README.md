@@ -5,6 +5,7 @@
 
 - [Methods](#methods)
   - [Followers Collection](#followers-collection)
+  - [Following Collection](#following-collection)
   - [Liked Collection](#liked-collection)
   - [Profiles](#profiles)
 - [Entities](#entities)
@@ -52,6 +53,29 @@ Return:
 | `id`            | URL for current endpoint            | no       | string            |
 | `type`          | OrderedCollectionPage               | no       | string            |
 | `totalItems`    | Total number of followers           | no       | int32             |
+| `prev`          | Previous page URL                   | yes      | string            |
+| `next`          | Next page URL                       | yes      | string            |
+| `orderedItems`  | The URL of each follower            | no       | Array of strings  |
+
+### Following Collection
+
+#### Getting an Actor's Following Collection:
+
+    GET :nickname/following.json
+
+Query parameters:
+
+| Field       | Description                                          | Optional   | Type       |
+| ----------- | ---------------------------------------------------- | ---------- | ---------- |
+| `page`      | Following page index                                 | no         | int32      |
+
+Return:
+
+| Field           | Description                         | Nullable | Type              |
+| --------------- | ----------------------------------- | -------- | ----------------- |
+| `id`            | URL for current endpoint            | no       | string            |
+| `type`          | OrderedCollectionPage               | no       | string            |
+| `totalItems`    | Number of persons the actor follows | no       | int32             |
 | `prev`          | Previous page URL                   | yes      | string            |
 | `next`          | Next page URL                       | yes      | string            |
 | `orderedItems`  | The URL of each follower            | no       | Array of strings  |
