@@ -1,4 +1,4 @@
-<ActivityPub Plugin for GNU Social Doc
+ActivityPub Plugin for GNU Social Doc
 =====================================
 
 ## Contents
