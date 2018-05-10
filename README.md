@@ -1,4 +1,4 @@
-ActivityPub Plugin for GNU Social Doc
+<ActivityPub Plugin for GNU Social Doc
 =====================================
 
 ## Contents
@@ -47,12 +47,14 @@ Query parameters:
 
 Return:
 
-| Field           | Description                         | Type    |
-| --------------- | ----------------------------------- | ------- |
-| `id`            | URL for current endpoint            | string  |
-| `type`          | OrderedCollectionPage               | string  |
-| `totalItems`    | Total number of followers           | int32   |
-| `orderedItems`  | The URL of each follower            | string  |
+| Field           | Description                         | Nullable | Type              |
+| --------------- | ----------------------------------- | -------- | ----------------- |
+| `id`            | URL for current endpoint            | no       | string            |
+| `type`          | OrderedCollectionPage               | no       | string            |
+| `totalItems`    | Total number of followers           | no       | int32             |
+| `prev`          | Previous page URL                   | yes      | string            |
+| `next`          | Next page URL                       | yes      | string            |
+| `orderedItems`  | The URL of each follower            | no       | Array of strings  |
 
 ### Liked Collection
 
@@ -70,12 +72,12 @@ Query parameters:
 
 Return:
 
-| Field           | Description                         | Type                         |
-| --------------- | ----------------------------------- | ---------------------------- |
-| `id`            | URL for current endpoint            | string                       |
-| `type`          | OrderedCollection                   | string                       |
-| `totalItems`    | Number of elements in orderedItems  | int32                        |
-| `orderedItems`  | Array of [Notices](#notice)         | Array of [Notices](#notice)  |
+| Field           | Description                         | Nullable | Type                         |
+| --------------- | ----------------------------------- | -------- | ---------------------------- |
+| `id`            | URL for current endpoint            | no       | string                       |
+| `type`          | OrderedCollection                   | no       | string                       |
+| `totalItems`    | Number of elements in orderedItems  | no       | int32                        |
+| `orderedItems`  | Array of [Notices](#notice)         | no       | Array of [Notices](#notice)  |
 
 ### Profiles
 
