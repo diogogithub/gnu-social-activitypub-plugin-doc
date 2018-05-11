@@ -16,6 +16,13 @@ ActivityPub Plugin for GNU Social Doc
   - [Profile](#profile)
   - [Tag](#tag)
 
+###### Retrieving objects
+
+The HTTP GET method may be dereferenced against an object's `id` property to retrieve the activity.
+The plugin supports HTTP content negotiation as defined in [RFC7231](https://tools.ietf.org/html/rfc7231) in every endpoint suffixed with .json .
+The plugin always presents ActivityStreams object representation in response to every request.
+The client MUST specify an `Accept` header with the `application/ld+json; profile="https://www.w3.org/ns/activitystreams"` media type in order to retrieve the activity.
+
 ###### Selecting ranges
 
 For most `GET` operations that return arrays, the query parameters `max_id` and `since_id` can be used to specify the range of IDs to return.
@@ -55,7 +62,7 @@ Return:
 | `totalItems`    | Total number of followers           | no       | int32             |
 | `prev`          | Previous page URL                   | yes      | string            |
 | `next`          | Next page URL                       | yes      | string            |
-| `orderedItems`  | The URL of each follower            | no       | Array of strings  |
+| `orderedItems`  | The URL of each profile             | no       | Array of strings  |
 
 ### Following Collection
 
@@ -78,7 +85,7 @@ Return:
 | `totalItems`    | Number of persons the actor follows | no       | int32             |
 | `prev`          | Previous page URL                   | yes      | string            |
 | `next`          | Next page URL                       | yes      | string            |
-| `orderedItems`  | The URL of each follower            | no       | Array of strings  |
+| `orderedItems`  | The URL of each profile             | no       | Array of strings  |
 
 ### Liked Collection
 
@@ -107,6 +114,7 @@ Return:
 
 #### Fetching an Actor's profile:
 
+    GET :nickname
     GET :nickname/profile.json
 
 Returns a [Profile](#profile).
