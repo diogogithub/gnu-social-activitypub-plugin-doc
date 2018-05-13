@@ -39,6 +39,8 @@ If the request you make doesn't go through, the plugin will usually respond with
 
 ___
 
+> **Note:** Some attributes in the payload can have ``null`` value and are marked as _nullable_ on the tables below. Attributes that are not nullable are guaranteed to return a valid value.
+
 ## Methods
 
 ### Followers Collection
@@ -49,20 +51,20 @@ ___
 
 Query parameters:
 
-| Field       | Description                                          | Optional   | Type       |
-| ----------- | ---------------------------------------------------- | ---------- | ---------- |
-| `page`      | Followers page index                                 | no         | int32      |
+| Field       | Description               | Optional   | Type       |
+| ----------- | ------------------------- | ---------- | ---------- |
+| `page`      | Page index (starts in 1)  | no         | int32      |
 
 Return:
 
-| Field           | Description                         | Nullable | Type              |
-| --------------- | ----------------------------------- | -------- | ----------------- |
-| `id`            | URL for current endpoint            | no       | string            |
-| `type`          | OrderedCollectionPage               | no       | string            |
-| `totalItems`    | Total number of followers           | no       | int32             |
-| `prev`          | Previous page URL                   | yes      | string            |
-| `next`          | Next page URL                       | yes      | string            |
-| `orderedItems`  | The URL of each profile             | no       | Array of strings  |
+| Field           | Description                  | Nullable | Type              |
+| --------------- | ---------------------------- | -------- | ----------------- |
+| `id`            | URL of the current endpoint  | no       | string            |
+| `type`          | OrderedCollectionPage        | no       | string            |
+| `totalItems`    | Total number of followers    | no       | int32             |
+| `prev`          | Previous page URL            | yes      | string            |
+| `next`          | Next page URL                | yes      | string            |
+| `orderedItems`  | The URL of each profile      | no       | Array of strings  |
 
 ### Following Collection
 
@@ -72,20 +74,20 @@ Return:
 
 Query parameters:
 
-| Field       | Description                                          | Optional   | Type       |
-| ----------- | ---------------------------------------------------- | ---------- | ---------- |
-| `page`      | Following page index                                 | no         | int32      |
+| Field       | Description               | Optional   | Type       |
+| ----------- | ------------------------- | ---------- | ---------- |
+| `page`      | Page index (starts in 1)  | no         | int32      |
 
 Return:
 
-| Field           | Description                         | Nullable | Type              |
-| --------------- | ----------------------------------- | -------- | ----------------- |
-| `id`            | URL for current endpoint            | no       | string            |
-| `type`          | OrderedCollectionPage               | no       | string            |
-| `totalItems`    | Number of persons the actor follows | no       | int32             |
-| `prev`          | Previous page URL                   | yes      | string            |
-| `next`          | Next page URL                       | yes      | string            |
-| `orderedItems`  | The URL of each profile             | no       | Array of strings  |
+| Field           | Description                          | Nullable | Type              |
+| --------------- | ------------------------------------ | -------- | ----------------- |
+| `id`            | URL for current endpoint             | no       | string            |
+| `type`          | OrderedCollectionPage                | no       | string            |
+| `totalItems`    | Number of persons the actor follows  | no       | int32             |
+| `prev`          | Previous page URL                    | yes      | string            |
+| `next`          | Next page URL                        | yes      | string            |
+| `orderedItems`  | The URL of each profile              | no       | Array of strings  |
 
 ### Liked Collection
 
@@ -103,12 +105,12 @@ Query parameters:
 
 Return:
 
-| Field           | Description                         | Nullable | Type                         |
-| --------------- | ----------------------------------- | -------- | ---------------------------- |
-| `id`            | URL for current endpoint            | no       | string                       |
-| `type`          | OrderedCollection                   | no       | string                       |
-| `totalItems`    | Number of elements in orderedItems  | no       | int32                        |
-| `orderedItems`  | Array of [Notices](#notice)         | no       | Array of [Notices](#notice)  |
+| Field           | Description                  | Nullable | Type                         |
+| --------------- | ---------------------------- | -------- | ---------------------------- |
+| `id`            | URL for current endpoint     | no       | string                       |
+| `type`          | OrderedCollection            | no       | string                       |
+| `totalItems`    | Total number of favorites    | no       | int32                        |
+| `orderedItems`  | Array of [Notices](#notice)  | no       | Array of [Notices](#notice)  |
 
 ### Profiles
 
@@ -122,8 +124,6 @@ Returns a [Profile](#profile).
 ___
 
 ## Entities
-
-> **Note:** Some attributes attributes in the entity payload can have ``null`` value and are marked as _nullable_ on the tables below. Attributes that are not nullable are guaranteed to return a valid value.
 
 ### Attachment
 
@@ -143,9 +143,9 @@ Images may contain `width`, `height`, `size`.
 
 The most important part of an error response is the HTTP status code. Standard semantics are followed. The body of an error is a JSON object with this structure:
 
-| Attribute                | Description                        | Nullable | Type    |
-| ------------------------ | ---------------------------------- | -------- | ------- |
-| `error`                  | A textual description of the error | no       | string  |
+| Attribute                | Description                         | Nullable | Type    |
+| ------------------------ | ----------------------------------- | -------- | ------- |
+| `error`                  | A textual description of the error  | no       | string  |
 
 ### Image
 
@@ -167,7 +167,6 @@ The most important part of an error response is the HTTP status code. Standard s
 | `to`                     | To                                                | no       |                                      |
 | `cc`                     | CC                                                | no       |                                      |
 | `content`                | Notice's Content in plain text                    | no       | string                               |
-| `rendered`               | Notice's Content in HTML                          | no       | string                               |
 | `url`                    | Notice's URL                                      | no       | string                               |
 | `reply_to`               | ID of the notice this replies                     | yes      | int32                                |
 | `is_local`               | Boolean, true if local, false otherwise           | no       | bool                                 |
