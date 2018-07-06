@@ -4,17 +4,19 @@ ActivityPub Plugin for GNU Social Doc
 ## Contents
 
 - [Methods](#methods)
-  - [Followers Collection](#followers-collection)
-  - [Following Collection](#following-collection)
-  - [Liked Collection](#liked-collection)
-  - [Profiles](#profiles)
+    - [Followers Collection](#followers-collection)
+    - [Following Collection](#following-collection)
+    - [Inbox](#inbox)
+        - [Inbox Create](#inbox-create)
+    - [Liked Collection](#liked-collection)
+    - [Profiles](#profiles)
 - [Entities](#entities)
-  - [Attachment](#attachment)
-  - [Error](#error)
-  - [Image](#image)
-  - [Notice](#notice)
-  - [Profile](#profile)
-  - [Tag](#tag)
+    - [Attachment](#attachment)
+    - [Error](#error)
+    - [Image](#image)
+    - [Notice](#notice)
+    - [Profile](#profile)
+    - [Tag](#tag)
 
 ###### Retrieving objects
 
@@ -45,7 +47,7 @@ ___
 
 ### Followers Collection
 
-#### Getting an Actor's Followers Collection:
+#### Getting an Actor's Followers Collection
 
     GET :nickname/followers.json
 
@@ -68,7 +70,7 @@ Return:
 
 ### Following Collection
 
-#### Getting an Actor's Following Collection:
+#### Getting an Actor's Following Collection
 
     GET :nickname/following.json
 
@@ -89,9 +91,57 @@ Return:
 | `next`          | Next page URL                        | yes      | string            |
 | `orderedItems`  | The URL of each profile              | no       | Array of strings  |
 
+### Inbox
+
+#### Inbox Create
+
+    POST :nickname/inbox.json
+
+Query parameters:
+
+| Field           | Description                                          | Optional   | Type       |
+| --------------- | ---------------------------------------------------- | ---------- | ---------- |
+| `@context`      | Standard compliance                                  | no         | string     |
+| `id`            | URL of Actor's object                                | no         | string     |
+| `type`          | https://www.w3.org/ns/activitystreams                | no         | string     |
+| `actor`         | Actor's URL                                          | no         | string     |
+| `object`        | Entity                                               | no         | int32      |
+
+##### Example
+###### Request:
+
+    POST https://actor_instance.localhost/nickname/inbox.json
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "id": "https://actor_instance.com/create-hello-world",
+      "type": "Create",
+      "actor": "https://actor_instance.localhost/nickname",
+      "object": {
+        "type": "Note",
+        "reply_to": "http://remote_instance/notice/1337",
+        "content": "hello, world.",
+        "to": "https://www.w3.org/ns/activitystreams#Public"
+      }
+    }
+
+###### Return:
+
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "id": "https://actor_instance.com/create-hello-world",
+      "type": "Create",
+      "actor": "https://actor_instance.localhost/nickname",
+      "object": {
+        "type": "Note",
+        "reply_to": "http://remote_instance/notice/1337",
+        "content": "hello, world.",
+        "to": "https://www.w3.org/ns/activitystreams#Public"
+      }
+    }
+
 ### Liked Collection
 
-#### Getting an Actor's Liked Collection:
+#### Getting an Actor's Liked Collection
 
     GET :nickname/liked.json
 
@@ -114,10 +164,9 @@ Return:
 
 ### Profiles
 
-#### Fetching an Actor's profile:
+#### Fetching an Actor's profile
 
     GET :nickname
-    GET :nickname/profile.json
 
 Returns a [Profile](#profile).
 
@@ -164,8 +213,8 @@ The most important part of an error response is the HTTP status code. Standard s
 | `type`                   | Notice's Type                                     | no       | string                               |
 | `actor`                  | URL of Notice owner profile page (can be remote)  | no       | string                               |
 | `published`              | DateTime of notice creation                       | no       | datetime                             |
-| `to`                     | To                                                | no       |                                      |
-| `cc`                     | CC                                                | no       |                                      |
+| `to`                     | To                                                | no       | string                               |
+| `cc`                     | CC                                                | no       | string                               |
 | `content`                | Notice's Content in plain text                    | no       | string                               |
 | `url`                    | Notice's URL                                      | no       | string                               |
 | `reply_to`               | ID of the notice this replies                     | yes      | int32                                |
@@ -178,7 +227,7 @@ The most important part of an error response is the HTTP status code. Standard s
 
 | Attribute                | Description                                      | Nullable | Type             |
 | ------------------------ | ------------------------------------------------ | -------- | ---------------- |
-| `@context`               | Standard compliance                              | no       |                  |
+| `@context`               | Standard compliance                              | no       | string           |
 | `id`                     | Actor's id                                       | no       | int32            |
 | `type`                   | "Person"                                         | no       | string           |
 | `nickname`               | Actor's nickname                                 | no       | string           |
